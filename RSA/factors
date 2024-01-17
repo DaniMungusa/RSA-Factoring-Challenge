@@ -1,0 +1,31 @@
+#!/usr/bin/python3
+
+# Import the sys module to access the command line arguments
+import sys
+
+# Define a function that factorizes a number into a product of two smaller numbers
+def factorize(n):
+    # Loop through the numbers from 2 to the square root of n
+    for i in range(2, int(n**0.5) + 1):
+        # If n is divisible by i, then i and n//i are factors of n
+        if n % i == 0:
+            # Return i and n//i as a tuple
+            return (i, n//i)
+    # If no factors are found, return n and 1 as a tuple
+    return (n, 1)
+
+# Get the file name from the first command line argument
+file_name = sys.argv[1]
+
+# Open the file in read mode
+with open(file_name, "r") as file:
+    # Loop through each line in the file
+    for line in file:
+        # Strip the newline character from the line
+        line = line.strip()
+        # Convert the line to an integer
+        n = int(line)
+        # Factorize the number using the factorize function
+        p, q = factorize(n)
+        # Print the output in the format n=p*q
+        print(f"{n}={p}*{q}")
